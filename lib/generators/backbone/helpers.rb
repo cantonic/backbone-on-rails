@@ -75,7 +75,11 @@ module Backbone
       end
 
       def rails_app_name
-        Rails.application.class.name.split('::').first
+        if Rails.application.nil?
+          @destination_stack.first.split("/").last.camelize
+        else
+          Rails.application.class.name.split('::').first
+        end
       end
 
     end
